@@ -10,12 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_224657) do
+ActiveRecord::Schema.define(version: 2020_08_03_025651) do
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "due_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "topic_id", null: false
+    t.index ["topic_id"], name: "index_courses_on_topic_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_courses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_user_courses_on_course_id"
+    t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,5 +60,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_224657) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "courses", "topics"
+  add_foreign_key "user_courses", "courses"
+  add_foreign_key "user_courses", "users"
   add_foreign_key "users", "roles"
 end
