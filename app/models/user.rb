@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   belongs_to :role
-  before_create :set_default_role
+  before_validation :set_default_role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,11 +11,10 @@ class User < ApplicationRecord
             presence: true,
             uniqueness: true,
             format: {
-                      message: 'domain must be atos.net',
+                      message: 'domain must be gmail.com',
                       with: /\A[\w+-.]+@gmail.com\z/i
                     }
                     
-  
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
