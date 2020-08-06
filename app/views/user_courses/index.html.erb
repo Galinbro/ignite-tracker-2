@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <h1 class="mt-4">Courses</h1>
+  <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active"><%= @topic.name %></li>
+  </ol>
+
+  
+
+<ul class="nav nav-tabs">
+  <% Topic.all.each do |t|%>
+    <li class="nav-item">
+        <!--a href="#home" class="nav-link <%= " active" if @count==0 %>" data-toggle="tab"><%= t.name %></a-->
+        <%  if t == @topic %>
+          <%= link_to t.name, courses_path(:topic => t.id), :class => 'nav-link active' %>
+        <% else %>
+          <%= link_to t.name, courses_path(:topic => t.id), :class => 'nav-link' %>
+        <% end %>
+    </li>
+    <% @count = 1 %>
+  <% end %>
+</ul>
+
+
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Topic</th>
+      <th scope="col">Name</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Finished?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_courses.each do |course| %>
+      <% if course.user_id == current_user.id || current_user.role == Role.last %>
+        <tr>
+          <th scope="row"><%= course.course.topic.name %></th>
+          <td><%= course.course.name %></td>
+          <td><%= course.course.due_date %></td>
+          <td><%= 'No' if not course.finished %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%== pagy_bootstrap_nav(@pagy) %>
+

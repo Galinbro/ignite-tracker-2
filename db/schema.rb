@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_03_051753) do
+ActiveRecord::Schema.define(version: 2020_08_06_201119) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
@@ -40,7 +40,9 @@ ActiveRecord::Schema.define(version: 2020_08_03_051753) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "finished"
     t.datetime "date_finished"
+    t.integer "topic_id"
     t.index ["course_id"], name: "index_user_courses_on_course_id"
+    t.index ["topic_id"], name: "index_user_courses_on_topic_id"
     t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
 
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_08_03_051753) do
 
   add_foreign_key "courses", "topics"
   add_foreign_key "user_courses", "courses"
+  add_foreign_key "user_courses", "topics"
   add_foreign_key "user_courses", "users"
   add_foreign_key "users", "roles"
 end
