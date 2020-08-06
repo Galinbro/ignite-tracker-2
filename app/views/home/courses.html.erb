@@ -11,7 +11,7 @@
     <% @user_courses.each do |course| %>
       <% if course.user_id == current_user.id || current_user.role == Role.last %>
         <tr>
-          <th scope="row"><%= course %></th>
+          <th scope="row"><%= course.course.topic.name %></th>
           <td><%= course.course.name %></td>
           <td><%= course.course.due_date %></td>
           <td><%= 'No' if not course.finished %></td>

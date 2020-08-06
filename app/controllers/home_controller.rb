@@ -4,9 +4,5 @@ class HomeController < ApplicationController
 
   def courses
     @user_courses = UserCourse.all
-    if current_user.role == Role.first
-      
-    end
-
   end
 end
