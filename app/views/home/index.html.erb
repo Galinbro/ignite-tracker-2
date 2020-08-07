@@ -1,1 +1,30 @@
-<h1 class="mt-4">Dashboard</h1>
+<div class="container-fluid">
+  <h1 class="mt-4">Dashboard</h1>
+  <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Overall Performance</li>
+  </ol>
+
+  <%= pie_chart Course.group(:topic_id).count %>
+
+
+  <br><br><br>
+  <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Individual Performance</li>
+  </ol>
+  <div class="row">
+  <% @users.each do |u| %>
+    
+      <div class="col-xl-4 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+          <div class="card-body"><%= u.name %></div>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+              <a class="small text-white stretched-link" href="#">View Details</a>
+              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </div>
+      </div>
+
+    
+  <% end %>
+  </div>
+</div>
