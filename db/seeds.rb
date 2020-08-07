@@ -48,6 +48,6 @@ courses = Course.all
 t = Topic.first.id
 users.each do |u|
   courses.each do |c|
-    UserCourse.create!(user_id: u.id, course_id: c.id, topic_id: t)
+    UserCourse.create!(user_id: u.id, course_id: c.id, topic_id: t, finished: false)
   end
 end

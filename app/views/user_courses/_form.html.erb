@@ -1,19 +1,17 @@
 
-<%= form_with(model: @user_courses, local: true) do |f|%>
+
+<%= form_with(model: @user_course, local: true) do |f|%>
   <div class="form-group">
-    <%= f.label :user_id, class: "form-label" %>
-    <%= f.text_field :user_id, class:  "form-control", placeholder: "Enter title"%>
+    <%= f.label :topic_id, class: "form-label" %>
+    <%= f.text_field :topic_id, class:  "form-control", placeholder: "Enter title", :disabled => true %>
   </div>
   <div class="form-group">
     <%= f.label :course_id, class: "form-label" %>
-    <%= f.text_field :course_id, rows: 6, class:  "form-control", placeholder: "Enter description"%>
+    <%= f.text_field :course_id, class:  "form-control", placeholder: "Enter title", :disabled => true %>
   </div>
   <div class="form-group">
-    <%= f.label :topic_id, class: "form-label" %>
-    <div class=""> 
-      <%= f.collection_select(:topic_id, Topic.all, :id, :name,
-      { prompt: "Make your selection from the list below (can be empty)"}, { multiple: true, size: 3, class: "custom-select rounded" }) %>
-    </div>
+    <%= f.label :finished, class: "form-label" %>
+    <%= f.check_box :finished, class:  "form-control", placeholder: "Enter title"%>
   </div>
   <div class="form-group">
     <%= f.submit class: "btn btn-outline-primary btn-lg"%>

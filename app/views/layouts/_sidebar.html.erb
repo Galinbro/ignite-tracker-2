@@ -15,17 +15,17 @@
             </a>
             <% end %>
             <div class="sb-sidenav-menu-heading">Courses</div>
-            <a class="nav-link" href=<%= new_user_course_path %>>
-                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                Register
-            </a>
             <a class="nav-link" href=<%= user_courses_path %>>
                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                 See all
             </a>
-            <a class="nav-link" href=<%= user_courses_missing_path %>>
+            <a class="nav-link" href=<%= missing_courses_path %>>
                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                 Missing
+            </a>
+            <a class="nav-link" href=<%= done_courses_path %>>
+                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                Done
             </a>
         </div>
     </div>
