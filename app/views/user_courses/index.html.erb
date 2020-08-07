@@ -11,9 +11,9 @@
     <li class="nav-item">
         <!--a href="#home" class="nav-link <%= " active" if @count==0 %>" data-toggle="tab"><%= t.name %></a-->
         <%  if t == @topic %>
-          <%= link_to t.name, courses_path(:topic => t.id), :class => 'nav-link active' %>
+          <%= link_to t.name, user_courses_path(:topic => t.id), :class => 'nav-link active' %>
         <% else %>
-          <%= link_to t.name, courses_path(:topic => t.id), :class => 'nav-link' %>
+          <%= link_to t.name, user_courses_path(:topic => t.id), :class => 'nav-link' %>
         <% end %>
     </li>
     <% @count = 1 %>
@@ -24,20 +24,30 @@
   <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Topic</th>
+      <!--th scope="col">Topic</th-->
       <th scope="col">Name</th>
       <th scope="col">Due Date</th>
       <th scope="col">Finished?</th>
+      <th scope="col">Days</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @user_courses.each do |course| %>
       <% if course.user_id == current_user.id || current_user.role == Role.last %>
-        <tr>
-          <th scope="row"><%= course.course.topic.name %></th>
+        <tr class="<%= 'table-success' if course.finished%>">
+          <!--th scope="row"><%= course.course.topic.name %></th-->
           <td><%= course.course.name %></td>
-          <td><%= course.course.due_date %></td>
-          <td><%= 'No' if not course.finished %></td>
+          <% if course.course.due_date.to_date.past? %>
+            <td><%= time_ago_in_words(course.course.due_date)%> ago</td>
+          <% else %>
+            <td><%= time_ago_in_words(course.course.due_date)%> from today</td>
+          <% end %>
+          <td><%== human_boolean(course.finished) %></td>
+          <td><%= time_ago_in_words(course.date_finished) if course.date_finished %></td>
+          <td>
+            <%= link_to "edit", edit_user_course_path(course), class: "btn btn-outline-info btn-sm" %>
+          </td>
         </tr>
       <% end %>
     <% end %>
