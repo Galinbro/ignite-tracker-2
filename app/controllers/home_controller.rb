@@ -1,6 +1,12 @@
 class HomeController < ApplicationController 
   def index
-    @users = User.all
+    if current_user.role.id == 1
+      @user = User.find_by(email: current_user.email)
+    elsif current_user.role.id == 2
+      @users = User.all
+    else
+      @users = User.all
+    end
   end
 
   # def courses
