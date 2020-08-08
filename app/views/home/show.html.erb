@@ -4,26 +4,31 @@
       <li class="breadcrumb-item active">Overall Performance</li>
   </ol>
 
-  <div class="row justify-content-center mt-2">
+  <div class="row justify-content-center mt-2 mx-auto">
       <div class="col text-center">
-        <span>Test title</span>
+        <span>Technical</span>
         <%= pie_chart chart_users_topic1_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
       </div>
-      <div class="col">
-        <%= pie_chart chart_users_topic2_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
+      <div class="col text-center">
+        <span>Practical</span>
+        <%= pie_chart chart_users_topic2_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%", xtitle: "Time", ytitle: "Population" %>
       </div>
-      <div class="col">
+      <div class="col text-center">
+        <span>Soft Skill</span>
         <%= pie_chart chart_users_topic3_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
       </div>
   </div>
-  <div class="row justify-content-center mt-2">
-      <div class="col">
+  <div class="row justify-content-center mt-2 mx-auto">
+      <div class="col text-center">
+        <span>Atos Training</span>
         <%= pie_chart chart_users_topic4_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
       </div>
-      <div class="col">
+      <div class="col text-center">
+        <span>Project</span>
         <%= pie_chart chart_users_topic5_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
       </div>
-      <div class="col">
+      <div class="col text-center">
+        <span>Other</span>
         <%= pie_chart chart_users_topic6_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
       </div>
   </div>
