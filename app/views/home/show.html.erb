@@ -4,12 +4,16 @@
       <li class="breadcrumb-item active">Overall Performance</li>
   </ol>
 
-  <%= pie_chart Course.group(:topic_id).count %>
+  <div class="row">
+    <%= pie_chart UserCourse.where(user_id: current_user.id, finished: true).group(:topic_id).count.transform_keys! {|k| @key_map[k]}, download: true, donut: true  %>
+  </div>
+
 
   <br><br><br>
   <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item active">Individual Performance</li>
   </ol>
   <div class="row">
+  <span>work in progress</span>
   </div>
 </div>

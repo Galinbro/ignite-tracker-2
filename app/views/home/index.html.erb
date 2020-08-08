@@ -3,9 +3,50 @@
   <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item active">Overall Performance</li>
   </ol>
-
-  <%= pie_chart Course.group(:topic_id).count %>
-
+  <div class="container">
+    <div class="row-fluid">
+      <div class="card">
+        <div class="card-body">
+          <div class="row-fluid">
+            <div class="progress" style="height: 35px;">
+              <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow="<%= @percent %>" aria-valuemin="0" aria-valuemax="100"><%= @percent %>%</div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row mt-3">
+              <h5>Course: <strong>Ignite</strong></h5>
+            </div> 
+            <div class="row mt-2">
+             <i class="far fa-clock mr-1 "></i><h6>Length: 12 weeks</h6>
+            </div> 
+          <div>      
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-2">
+      <div class="col text-center">
+        <span>Test title</span>
+        <%= pie_chart chart_users_topic1_path, download: true, donut: true, width: "200px", height: "150px" %>
+      </div>
+      <div class="col">
+        <%= pie_chart chart_users_topic2_path, download: true, donut: true, width: "200px", height: "150px" %>
+      </div>
+      <div class="col">
+        <%= pie_chart chart_users_topic3_path, download: true, donut: true, width: "200px", height: "150px" %>
+      </div>
+  </div>
+  <div class="row justify-content-center mt-2">
+      <div class="col">
+        <%= pie_chart chart_users_topic4_path, download: true, donut: true, width: "200px", height: "150px"%>
+      </div>
+      <div class="col">
+        <%= pie_chart chart_users_topic5_path, download: true, donut: true, width: "200px", height: "150px" %>
+      </div>
+      <div class="col">
+        <%= pie_chart chart_users_topic6_path, download: true, donut: true, width: "200px", height: "150px" %>
+      </div>
+  </div>
   <br><br><br>
   <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item active">Individual Performance</li>
