@@ -24,56 +24,31 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center mt-2">
-      <div class="col text-center">
-        <span>Test title</span>
-        <%= pie_chart chart_users_topic1_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
+  <div class="row justify-content-center mt-2 mx-auto">
+    <% Topic.all.each do |t|%>
+      <div class="col-4 text-center">
+        <span><%= t.name %></span>
+        <%= pie_chart chart_admins_topics_path(t), download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
       </div>
-      <div class="col">
-        <%= pie_chart chart_users_topic2_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
-      </div>
-      <div class="col">
-        <%= pie_chart chart_users_topic3_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
-      </div>
-  </div>
-  <div class="row justify-content-center mt-2">
-      <div class="col">
-        <%= pie_chart chart_users_topic4_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
-      </div>
-      <div class="col">
-        <%= pie_chart chart_users_topic5_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
-      </div>
-      <div class="col">
-        <%= pie_chart chart_users_topic6_path, download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>
-      </div>
+    <% end %>
   </div>
   <br><br><br>
   <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item active">Individual Performance</li>
   </ol>
   <div class="row">
-  <% if current_user.role.id == 1 %>
-    <div class="col-xl-4 col-md-6">
+  
+  <% @users.each do |u| %>
+      <div class="col-xl-4 col-md-6">
         <div class="card bg-primary text-white mb-4">
-          <div class="card-body"><%= @user.name %></div>
+          <div class="card-body"><%= u.name %></div>
           <div class="card-footer d-flex align-items-center justify-content-between">
-              <%= link_to 'View details', me_path(@user), class: "small text-white stretched-link" %>
+              <%= link_to 'View details', me_path(u), class: "small text-white stretched-link" %>
               <div class="small text-white"><i class="fas fa-angle-right"></i></div>
           </div>
         </div>
       </div>
-  <% else %>
-    <% @users.each do |u| %>
-        <div class="col-xl-4 col-md-6">
-          <div class="card bg-primary text-white mb-4">
-            <div class="card-body"><%= u.name %></div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-                <%= link_to 'View details', me_path(u), class: "small text-white stretched-link" %>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-            </div>
-          </div>
-        </div>
-    <% end %>
   <% end %>
+  
   </div>
 </div>

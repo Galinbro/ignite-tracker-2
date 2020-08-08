@@ -7,14 +7,21 @@ class HomeController < ApplicationController
       @users = User.all
     else
       @users = User.all
+      @key_map = {1 => "Technical", 2 => "Practical", 3 => "Soft Skill", 4 => "Atos Training", 5 => "project", 6 => "Other"}
+      @percent = (UserCourse.where(finished: true ).count.to_f / Course.all.count * 100).round(2)
     end
     # User.find_by(email: current_user.email).courses.select { |x| x.topic_id == 6 }
   end
 
   def show
-    @key_map = {1 => "Technical", 2 => "Practical", 3 => "Soft Skill", 4 => "Atos Training", 5 => "project", 6 => "Other"}
     @user = User.find(params[:id])
-    @percent = (UserCourse.where(user_id: current_user.id, finished: true ).count.to_f / Course.all.count * 100).round(2)
+    if @user == current_user || current_user.role.id > 1
+      @key_map = {1 => "Technical", 2 => "Practical", 3 => "Soft Skill", 4 => "Atos Training", 5 => "project", 6 => "Other"}
+      @percent = (UserCourse.where(user_id: current_user.id, finished: true ).count.to_f / Course.all.count * 100).round(2)
+    else
+      flash[:alert] = "Unauthorized."
+      redirect_to me_path(current_user)
+    end
   end
 
 end

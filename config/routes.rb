@@ -11,13 +11,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :chart do
+    get '/topics/:id/:topic', to: 'users#topics', as: 'users_topics'
+    get '/topics/:topic', to: 'admins#topics', as: 'admins_topics'
       namespace :users do
-        get 'topic1'
-        get 'topic2'
-        get 'topic3'
-        get 'topic4'
-        get 'topic5'
-        get 'topic6'
+      end
+      namespace :admins do
       end
   end
 end
