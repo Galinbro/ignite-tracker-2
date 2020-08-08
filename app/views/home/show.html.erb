@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <h1 class="mt-4"><%= @user.name %></h1>
+  <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Overall Performance</li>
+  </ol>
+
+  <%= pie_chart Course.group(:topic_id).count %>
+
+  <br><br><br>
+  <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Individual Performance</li>
+  </ol>
+  <div class="row">
+  </div>
+</div>
