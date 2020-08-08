@@ -46,7 +46,11 @@
           <td><%== human_boolean(course.finished) %></td>
           <td><%= time_ago_in_words(course.date_finished) if course.date_finished %></td>
           <td>
-            <%= link_to "Done", edit_user_course_path(course), class: "btn btn-outline-info btn-sm" %>
+            <%= form_tag done_courses_patch_path(course), method: :patch do -%>
+              <%= hidden_field_tag :finished, true -%>
+              <%= hidden_field_tag :course_id, course.course.id -%>
+              <%= submit_tag 'Done', class: "btn btn-outline-info btn-sm" -%>
+            <%- end -%>
           </td>
         </tr>
       <% end %>
