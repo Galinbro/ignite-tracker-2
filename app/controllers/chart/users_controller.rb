@@ -6,6 +6,5 @@ module Chart
       mine_percent = (mine.to_f*100/all).round(0)
       render json: {'Finish' => mine_percent, 'Missing' => 100-mine_percent }
     end
-    
   end
 end

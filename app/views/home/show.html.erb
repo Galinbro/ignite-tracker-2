@@ -3,8 +3,9 @@
   <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item active">Overall Performance</li>
   </ol>
+
   <div class="row justify-content-center mt-2 mx-auto">
-    <% Topic.all.each do |t|%>
+      <% Topic.all.each do |t|%>
       <div class="col-4 text-center">
         <span><%= t.name %></span>
         <%= pie_chart chart_users_topics_path(@user, t), download: true, donut: true, width: "200px", height: "150px", suffix: "%" %>

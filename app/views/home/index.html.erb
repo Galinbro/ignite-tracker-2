@@ -38,17 +38,17 @@
   </ol>
   <div class="row">
   
-  <% @users.each do |u| %>
-      <div class="col-xl-4 col-md-6">
-        <div class="card bg-primary text-white mb-4">
-          <div class="card-body"><%= u.name %></div>
-          <div class="card-footer d-flex align-items-center justify-content-between">
-              <%= link_to 'View details', me_path(u), class: "small text-white stretched-link" %>
-              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+    <% @users.each do |u| %>
+        <div class="col-xl-4 col-md-6">
+          <div class="card bg-primary text-white mb-4">
+            <div class="card-body"><%= u.name %></div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <%= link_to 'View details', me_path(u), class: "small text-white stretched-link" %>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
           </div>
         </div>
-      </div>
-  <% end %>
-  
+    <% end %>
+    
   </div>
 </div>
