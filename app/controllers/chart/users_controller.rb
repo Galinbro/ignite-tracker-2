@@ -1,35 +1,30 @@
 module Chart
   class UsersController < ApplicationController
     def topic1
-      all = UserCourse.where(user_id: current_user.id, topic_id: 1).count
-      mine = UserCourse.where(user_id: current_user.id, finished: true, topic_id: 1).count
-      render json: {'finish' => mine, 'missing' => all-mine }
+      topics(1)
     end
     def topic2
-      all = UserCourse.where(user_id: current_user.id, topic_id: 2).count
-      mine = UserCourse.where(user_id: current_user.id, finished: true, topic_id: 2).count
-      render json: {'finish' => mine, 'missing' => all-mine }
+      topics(2)
     end
     def topic3
-      all = UserCourse.where(user_id: current_user.id, topic_id: 3).count
-      mine = UserCourse.where(user_id: current_user.id, finished: true, topic_id: 3).count
-      render json: {'finish' => mine, 'missing' => all-mine }
+      topics(3)
     end
     def topic4
-      all = UserCourse.where(user_id: current_user.id, topic_id: 4).count
-      mine = UserCourse.where(user_id: current_user.id, finished: true, topic_id: 4).count
-      render json: {'finish' => mine, 'missing' => all-mine }
+      topics(4)
     end
     def topic5
-      all = UserCourse.where(user_id: current_user.id, topic_id: 5).count
-      mine = UserCourse.where(user_id: current_user.id, finished: true, topic_id: 5).count
-      render json: {'finish' => mine, 'missing' => all-mine }
+      topics(5)
     end
     def topic6
-      all = UserCourse.where(user_id: current_user.id, topic_id: 6).count
-      mine = UserCourse.where(user_id: current_user.id, finished: true, topic_id: 6).count
-      render json: {'finish' => mine, 'missing' => all-mine }
+      topics(6)
     end
   
+    private
+    def topics (topic)
+      all = UserCourse.where(user_id: current_user.id, topic_id: topic).count
+      mine = UserCourse.where(user_id: current_user.id, finished: true, topic_id: topic).count
+      mine_percent = (mine.to_f*100/all).round(0)
+      render json: {'Finish' => mine_percent, 'Missing' => 100-mine_percent }
+    end
   end
 end
