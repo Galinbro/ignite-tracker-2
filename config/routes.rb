@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :user_courses
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { 
+    omniauth_callbacks: 'users/omniauth_callbacks' 
+  }
   root to: 'home#index'
   get '/me/:id', to: 'home#show', as: 'me'
 

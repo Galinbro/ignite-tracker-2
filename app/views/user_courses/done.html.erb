@@ -52,7 +52,7 @@
           <%= form_tag done_courses_patch_path(course), method: :patch do -%>
             <%= hidden_field_tag :finished, false -%>
             <%= hidden_field_tag :course_id, course.course.id -%>
-            <%= submit_tag 'incomplete', class: "btn btn-outline-danger btn-sm" -%>
+            <%= submit_tag 'incomplete', class: "btn btn-outline-danger btn-sm", data: {confirm: "Are you sure?"} -%>
           <%- end -%>
           </td>
         </tr>
